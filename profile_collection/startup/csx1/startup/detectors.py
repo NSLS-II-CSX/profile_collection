@@ -107,3 +107,18 @@ for attr in configuration_attrs_list:
 _setup_stats(fccd)
 
 
+
+
+def enable_squashing():
+    # flip a bit on the fccd so it knows the right number of frames per point
+    yield from bps.mv(fccd.hdf5.squashing, True)
+    # do the AD plugin plumbing
+    yield from bps.mv(fccd.hdf5.nd_array_port, fccd.proc1.port_name.get(),
+                      fccd.proc1.nd_array_port, fccd.cam.port_name.get())
+
+
+def disable_squashing():
+    # flip a bit on the fccd so it knows the right number of frames per point    
+    yield from bps.mv(fccd.hdf5.squashing, False)
+    # do the AD plugin plumbing    
+    yield from bps.mv(fccd.hdf5.nd_array_port, fccd.cam.port_name.get())
