@@ -1,3 +1,5 @@
+print(f"Loading {__file__}...")
+
 from ophyd.epics_motor import EpicsMotor
 from ophyd.device import Component as Cpt
 from ophyd.signal import EpicsSignal, EpicsSignalRO
@@ -246,4 +248,4 @@ for cpt in ['tx', 'ty', 'tz', 'bx', 'by', 'bz']:
 # BlueskyMagics.positioners += [getattr(nanop, nn) for nn in nanop.component_names]
 
 #sd.baseline += [getattr(nanop, nn) for nn in nanop.component_names]
-sd.baseline += [nanop]
+# sd.baseline += [nanop]
